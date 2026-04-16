@@ -1,11 +1,8 @@
-FROM ubuntu:22.04
-
-RUN apt-get update && \
-    apt-get install -y openjdk-21-jdk && \
-    apt-get clean
+FROM eclipse-temurin:21-jre
 
 WORKDIR /app
 
-COPY build/libs/MemberService.jar /app/app.jar
+COPY build/libs/MemberService.jar app.jar
 
-CMD ["JAVA", "-jar", "app.jar"]
+# 컨테이너 환경에서 JVM 최적 동작
+ENTRYPOINT ["java", "-XX:MaxRAMPercentage=75.0", "-jar", "app.jar"]
