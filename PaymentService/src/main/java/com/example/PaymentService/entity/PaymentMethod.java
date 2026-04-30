@@ -2,6 +2,9 @@ package com.example.PaymentService.entity;
 
 import com.example.PaymentService.enums.PaymentMethodType;
 import jakarta.persistence.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Getter
@@ -17,12 +20,5 @@ public class PaymentMethod {
     public PaymentMethodType paymentMethodType;
     public String creditCardNumber;
 
-    public PaymentMethod() {
-    }
 
-    public PaymentMethod(Long userId, PaymentMethodType paymentMethodType, String creditCardNumber) {
-        this.userId = userId;
-        this.paymentMethodType = paymentMethodType;
-        this.creditCardNumber = creditCardNumber;
-    }
 }

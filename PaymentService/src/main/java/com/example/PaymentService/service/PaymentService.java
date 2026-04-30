@@ -25,9 +25,13 @@ public class PaymentService {
     public PaymentMethod registerPaymentMethod(
             Long userId,
             PaymentMethodType paymentMethodType,
-            String creditCardNumber
-    ) {
-        var paymentMethod = new PaymentMethod(userId, paymentMethodType, creditCardNumber);
+            String creditCardNumber)
+    {
+        var paymentMethod = PaymentMethod.builder()
+                .userId(userId)
+                .paymentMethodType(paymentMethodType)
+                .creditCardNumber(creditCardNumber)
+                .build();
         return paymentMethodRepository.save(paymentMethod);
     }
 
@@ -45,14 +49,15 @@ public class PaymentService {
 
        var refCode = creditCardPaymentAdapter.processCreditCardPayment(amountKRW, paymentMethod.creditCardNumber);
 
-       var payment = new Payment(userId,
-               orderId,
-               amountKRW,
-               paymentMethod.paymentMethodType,
-               paymentMethod.creditCardNumber,
-               PaymentStatus.COMPLETED,
-               refCode
-       );
+       var payment = Payment.builder()
+               .userId(userId)
+               .orderId(orderId)
+               .amountKRW(amountKRW)
+               .referenceCode(refCode)
+               .paymentMethodType(paymentMethod.getPaymentMethodType())
+               .paymentData(paymentMethod.getCreditCardNumber())
+               .paymentStatus(PaymentStatus.COMPLETED)
+               .build();
 
         return paymentRepository.save(payment);
     }
