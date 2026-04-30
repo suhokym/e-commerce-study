@@ -1,24 +1,23 @@
-package com.example.PaymentService.entity;
+package DeliveryService.entity;
 
-import com.example.PaymentService.enums.PaymentMethodType;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
+@Table(indexes = {@Index(name = "idx_userId", columnList = "userId")})
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@Table(indexes = {@Index(name = "idx_userId", columnList = "userId")})
-public class PaymentMethod {
+public class UserAddress {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
     public Long userId;
-    public PaymentMethodType paymentMethodType;
-    public String creditCardNumber;
+    public String address;
+    public String alias;
 
 
 }

@@ -3,14 +3,14 @@ package com.example.PaymentService.entity;
 import com.example.PaymentService.enums.PaymentMethodType;
 import com.example.PaymentService.enums.PaymentStatus;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Table(indexes = {@Index(name = "idx_userId", columnList = "userId")})
 public class Payment {
     @Id
