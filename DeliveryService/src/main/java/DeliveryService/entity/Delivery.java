@@ -8,6 +8,7 @@ import lombok.*;
 @Table(indexes = {@Index(name = "idx_orderId", columnList = "orderId")})
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Delivery {

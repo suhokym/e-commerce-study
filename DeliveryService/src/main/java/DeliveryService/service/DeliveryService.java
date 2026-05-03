@@ -33,7 +33,15 @@ public class DeliveryService {
             String address
     ) {
         var refCode = deliveryAdapter.processDelivery(productName, productCount, address);
-        var delivery = new Delivery(orderId, productName, productCount, address, refCode, DeliveryStatus.REQUESTED);
+        var delivery =  Delivery.builder()
+                .orderId(orderId)
+                .productName(productName)
+                .productCount(productCount)
+                .address(address)
+                .referenceCode(refCode)
+                .status(DeliveryStatus.REQUESTED)
+                .build();
+
 
         return deliveryRepository.save(delivery);
     }
