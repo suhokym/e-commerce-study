@@ -1,6 +1,5 @@
 package DeliveryService.controller;
 
-import DeliveryService.dto.ProcessDeliveryDto;
 import DeliveryService.dto.RegisterAddressDto;
 import DeliveryService.entity.Delivery;
 import DeliveryService.entity.UserAddress;
@@ -23,15 +22,6 @@ public class DeliveryController {
         );
     }
 
-    @PostMapping("/delivery/process-delivery")
-    public Delivery processDelivery(@RequestBody ProcessDeliveryDto dto) {
-        return deliveryService.processDelivery(
-                dto.orderId,
-                dto.productName,
-                dto.productCount,
-                dto.address
-        );
-    }
 
     @GetMapping("/delivery/deliveries/{deliveryId}")
     public Delivery getDelivery(@PathVariable Long deliveryId) {

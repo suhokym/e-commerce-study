@@ -1,7 +1,6 @@
 package com.example.PaymentService.controller;
 
 import com.example.PaymentService.dto.PaymentMethodDto;
-import com.example.PaymentService.dto.ProcessPaymentDto;
 import com.example.PaymentService.entity.Payment;
 import com.example.PaymentService.entity.PaymentMethod;
 import com.example.PaymentService.service.PaymentService;
@@ -22,15 +21,6 @@ public class PaymentController {
         );
     }
 
-    @PostMapping("/payment/process-payment")
-    public Payment processPayment(@RequestBody ProcessPaymentDto dto) throws Exception {
-        return paymentService.processPayment(
-                dto.userId,
-                dto.orderId,
-                dto.amountKRW,
-                dto.paymentMethodId
-        );
-    }
 
     @GetMapping("/payment/users/{userId}/first-method")
     public PaymentMethod getPaymentMethod(@PathVariable Long userId) {
